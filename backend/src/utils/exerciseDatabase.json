@@ -1,0 +1,130 @@
+{
+  "exercises": [
+    {
+      "name": "Jumping Jacks", "category": "Cardio", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 20, "rest": 30, "calories": 60, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 30, "rest": 20, "calories": 90, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 40, "rest": 15, "calories": 120, "duration": 0 }
+    },
+    {
+      "name": "Push Ups", "category": "Strength", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 8, "rest": 60, "calories": 40, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 15, "rest": 45, "calories": 70, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 25, "rest": 30, "calories": 100, "duration": 0 }
+    },
+    {
+      "name": "Squats", "category": "Strength", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 10, "rest": 60, "calories": 50, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 20, "rest": 45, "calories": 80, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 30, "rest": 30, "calories": 110, "duration": 0 }
+    },
+    {
+      "name": "Plank", "category": "Core", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 1, "rest": 60, "calories": 30, "duration": 20 },
+      "intermediate": { "sets": 3, "reps": 1, "rest": 45, "calories": 45, "duration": 40 },
+      "advanced": { "sets": 4, "reps": 1, "rest": 30, "calories": 60, "duration": 60 }
+    },
+    {
+      "name": "Lunges", "category": "Strength", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 8, "rest": 60, "calories": 45, "duration": 0 },
+      "intermediate": { "sets": 3, "reps": 15, "rest": 45, "calories": 70, "duration": 0 },
+      "advanced": { "sets": 4, "reps": 20, "rest": 30, "calories": 95, "duration": 0 }
+    },
+    {
+      "name": "Burpees", "category": "Cardio", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 5, "rest": 60, "calories": 70, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 10, "rest": 45, "calories": 120, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 15, "rest": 30, "calories": 160, "duration": 0 }
+    },
+    {
+      "name": "Mountain Climbers", "category": "Cardio", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 10, "rest": 45, "calories": 55, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 20, "rest": 30, "calories": 85, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 30, "rest": 20, "calories": 115, "duration": 0 }
+    },
+    {
+      "name": "High Knees", "category": "Cardio", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 20, "rest": 30, "calories": 50, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 30, "rest": 20, "calories": 75, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 40, "rest": 15, "calories": 100, "duration": 0 }
+    },
+    {
+      "name": "Bicycle Crunches", "category": "Core", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 10, "rest": 45, "calories": 30, "duration": 0 },
+      "intermediate": { "sets": 3, "reps": 20, "rest": 30, "calories": 50, "duration": 0 },
+      "advanced": { "sets": 4, "reps": 30, "rest": 20, "calories": 70, "duration": 0 }
+    },
+    {
+      "name": "Glute Bridges", "category": "Strength", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 12, "rest": 45, "calories": 35, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 20, "rest": 30, "calories": 55, "duration": 0 },
+      "advanced": { "sets": 4, "reps": 30, "rest": 20, "calories": 75, "duration": 0 }
+    },
+    {
+      "name": "Tricep Dips", "category": "Strength", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 8, "rest": 60, "calories": 35, "duration": 0 },
+      "intermediate": { "sets": 3, "reps": 15, "rest": 45, "calories": 55, "duration": 0 },
+      "advanced": { "sets": 4, "reps": 20, "rest": 30, "calories": 75, "duration": 0 }
+    },
+    {
+      "name": "Jump Rope (simulated)", "category": "Cardio", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 1, "rest": 60, "calories": 80, "duration": 60 },
+      "intermediate": { "sets": 4, "reps": 1, "rest": 45, "calories": 120, "duration": 90 },
+      "advanced": { "sets": 5, "reps": 1, "rest": 30, "calories": 160, "duration": 120 }
+    },
+    {
+      "name": "Superman Hold", "category": "Core", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 8, "rest": 45, "calories": 20, "duration": 0 },
+      "intermediate": { "sets": 3, "reps": 15, "rest": 30, "calories": 35, "duration": 0 },
+      "advanced": { "sets": 4, "reps": 20, "rest": 20, "calories": 50, "duration": 0 }
+    },
+    {
+      "name": "Step Ups", "category": "Cardio", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 10, "rest": 45, "calories": 45, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 20, "rest": 30, "calories": 70, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 30, "rest": 20, "calories": 95, "duration": 0 }
+    },
+    {
+      "name": "Stretching Routine", "category": "Flexibility", "equipment": "None",
+      "beginner": { "sets": 1, "reps": 1, "rest": 0, "calories": 20, "duration": 300 },
+      "intermediate": { "sets": 1, "reps": 1, "rest": 0, "calories": 30, "duration": 480 },
+      "advanced": { "sets": 1, "reps": 1, "rest": 0, "calories": 40, "duration": 600 }
+    },
+    {
+      "name": "Wall Sit", "category": "Strength", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 1, "rest": 60, "calories": 30, "duration": 20 },
+      "intermediate": { "sets": 3, "reps": 1, "rest": 45, "calories": 50, "duration": 40 },
+      "advanced": { "sets": 4, "reps": 1, "rest": 30, "calories": 70, "duration": 60 }
+    },
+    {
+      "name": "Calf Raises", "category": "Strength", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 15, "rest": 30, "calories": 20, "duration": 0 },
+      "intermediate": { "sets": 4, "reps": 25, "rest": 20, "calories": 35, "duration": 0 },
+      "advanced": { "sets": 5, "reps": 35, "rest": 15, "calories": 50, "duration": 0 }
+    },
+    {
+      "name": "Leg Raises", "category": "Core", "equipment": "None",
+      "beginner": { "sets": 3, "reps": 8, "rest": 45, "calories": 30, "duration": 0 },
+      "intermediate": { "sets": 3, "reps": 15, "rest": 30, "calories": 50, "duration": 0 },
+      "advanced": { "sets": 4, "reps": 25, "rest": 20, "calories": 70, "duration": 0 }
+    }
+  ],
+  "workoutSplits": {
+    "Weight Loss": {
+      "monday": "Cardio", "tuesday": "Strength", "wednesday": "Rest",
+      "thursday": "Cardio", "friday": "Strength", "saturday": "Flexibility", "sunday": "Rest"
+    },
+    "Muscle Gain": {
+      "monday": "Strength", "tuesday": "Strength", "wednesday": "Rest",
+      "thursday": "Strength", "friday": "Strength", "saturday": "Core", "sunday": "Rest"
+    },
+    "Stay Fit": {
+      "monday": "Cardio", "tuesday": "Strength", "wednesday": "Flexibility",
+      "thursday": "Rest", "friday": "Cardio", "saturday": "Strength", "sunday": "Rest"
+    },
+    "Improve Stamina": {
+      "monday": "Cardio", "tuesday": "Strength", "wednesday": "Cardio",
+      "thursday": "Rest", "friday": "Cardio", "saturday": "Core", "sunday": "Rest"
+    }
+  }
+}
