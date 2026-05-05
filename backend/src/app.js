@@ -9,8 +9,6 @@ const app = express();
 // Connect database
 connectDB();
 
-// Allowed origins (local + production)
-const cors = require("cors");
 
 app.use(cors({
   origin: "https://adaptive-fit-six.vercel.app",
