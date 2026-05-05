@@ -6,18 +6,46 @@ const connectDB = require('./config/database');
 
 const app = express();
 
+// Connect database
 connectDB();
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
-  credentials: true
-}));
+// Allowed origins (local + production)
+const allowedOrigins = [
+  "http://localhost:3000",
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
+// CORS configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman/curl
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
+// Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 200 });
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200
+});
 app.use('/api/', limiter);
 
+// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/meals', require('./routes/mealRoutes'));
 app.use('/api/workouts', require('./routes/workoutRoutes'));
@@ -25,13 +53,34 @@ app.use('/api/behavior', require('./routes/behaviorRoutes'));
 app.use('/api/chat', require('./routes/chatRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 
-app.get('/', (req, res) => res.json({ message: 'AdaptiveFit API running ✅', version: '1.0.0' }));
-app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ success: false, message: 'Internal server error' });
+// Health routes
+app.get('/', (req, res) => {
+  res.json({ message: 'AdaptiveFit API running', version: '1.0.0' });
 });
 
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ success: false, message: 'Route not found' });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  if (err.message === "Not allowed by CORS") {
+    return res.status(403).json({ success: false, message: err.message });
+  }
+
+  res.status(500).json({
+    success: false,
+    message: err.message || 'Internal server error'
+  });
+});
+
+// Start server
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`AdaptiveFit server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
