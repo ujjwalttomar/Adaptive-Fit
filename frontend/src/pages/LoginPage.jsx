@@ -21,7 +21,6 @@ export default function LoginPage() {
       const res = await authAPI.login(form);
       const { token, user } = res.data;
       login(token, user);
-      // profile.profileComplete is the correct path
       navigate(user.profile?.profileComplete ? '/dashboard' : '/profile/setup', { replace: true });
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
@@ -43,8 +42,8 @@ export default function LoginPage() {
         </div>
 
         <div className="card auth-card">
-          <h2 className="auth-title">Welcome back 👋</h2>
-          <p className="auth-subtitle">Log in to continue your journey</p>
+          <h2 className="auth-title">Welcome back</h2>
+          <p className="auth-subtitle">Sign in to continue your fitness journey</p>
 
           {error && <div className="alert alert-error">{error}</div>}
 
@@ -66,7 +65,7 @@ export default function LoginPage() {
               <div style={{ position: 'relative' }}>
                 <input
                   type={showPass ? 'text' : 'password'}
-                  placeholder="••••••••"
+                  placeholder="Enter your password"
                   value={form.password}
                   onChange={handleChange('password')}
                   required
@@ -78,16 +77,14 @@ export default function LoginPage() {
                   onClick={() => setShowPass(v => !v)}
                   style={{
                     position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
-                    background: 'none', border: 'none', color: 'var(--text2)', cursor: 'pointer', fontSize: 16
+                    background: 'none', border: 'none', color: 'var(--text2)', cursor: 'pointer', fontSize: 15
                   }}
-                >
-                  {showPass ? '🙈' : '👁️'}
-                </button>
+                >{showPass ? '🙈' : '👁️'}</button>
               </div>
             </div>
 
             <button type="submit" className="btn btn-primary btn-full" disabled={loading} style={{ marginTop: 8 }}>
-              {loading ? <><span className="btn-spinner" /> Logging in...</> : 'Login →'}
+              {loading ? <><span className="btn-spinner" /> Signing in…</> : 'Sign in →'}
             </button>
           </form>
 

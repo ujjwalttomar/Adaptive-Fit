@@ -47,34 +47,22 @@ export default function RegisterPage() {
         </div>
 
         <div className="card auth-card">
-          <h2 className="auth-title">Create account 🚀</h2>
-          <p className="auth-subtitle">Join thousands reaching their fitness goals</p>
+          <h2 className="auth-title">Create your account</h2>
+          <p className="auth-subtitle">Join and start reaching your fitness goals</p>
 
           {error && <div className="alert alert-error">{error}</div>}
 
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <label>Full Name</label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                value={form.fullName}
-                onChange={handleChange('fullName')}
-                required
-                autoComplete="name"
-              />
+              <input type="text" placeholder="John Doe" value={form.fullName}
+                onChange={handleChange('fullName')} required autoComplete="name" />
             </div>
 
             <div className="input-group">
               <label>Email</label>
-              <input
-                type="email"
-                placeholder="you@example.com"
-                value={form.email}
-                onChange={handleChange('email')}
-                required
-                autoComplete="email"
-              />
+              <input type="email" placeholder="you@example.com" value={form.email}
+                onChange={handleChange('email')} required autoComplete="email" />
             </div>
 
             <div className="input-group">
@@ -85,29 +73,21 @@ export default function RegisterPage() {
                   placeholder="Min 8 characters"
                   value={form.password}
                   onChange={handleChange('password')}
-                  required
-                  autoComplete="new-password"
+                  required autoComplete="new-password"
                   style={{ paddingRight: 44 }}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPass(v => !v)}
-                  style={{
-                    position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
-                    background: 'none', border: 'none', color: 'var(--text2)', cursor: 'pointer', fontSize: 16
-                  }}
-                >
+                <button type="button" onClick={() => setShowPass(v => !v)}
+                  style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
+                    background: 'none', border: 'none', color: 'var(--text2)', cursor: 'pointer', fontSize: 15 }}>
                   {showPass ? '🙈' : '👁️'}
                 </button>
               </div>
               {form.password.length > 0 && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 6 }}>
-                  {[1, 2, 3].map(i => (
-                    <div key={i} style={{
-                      flex: 1, height: 3, borderRadius: 2,
+                  {[1,2,3].map(i => (
+                    <div key={i} style={{ flex: 1, height: 3, borderRadius: 2,
                       background: i <= strength ? strengthColor[strength] : 'var(--border)',
-                      transition: 'background 0.3s'
-                    }} />
+                      transition: 'background 0.3s' }} />
                   ))}
                   <span style={{ fontSize: 11, color: strengthColor[strength], fontWeight: 600, minWidth: 40 }}>
                     {strengthLabel[strength]}
@@ -118,24 +98,18 @@ export default function RegisterPage() {
 
             <div className="input-group">
               <label>Confirm Password</label>
-              <input
-                type="password"
-                placeholder="Repeat password"
-                value={form.confirmPassword}
-                onChange={handleChange('confirmPassword')}
-                required
-                autoComplete="new-password"
-              />
+              <input type="password" placeholder="Repeat password" value={form.confirmPassword}
+                onChange={handleChange('confirmPassword')} required autoComplete="new-password" />
             </div>
 
             <button type="submit" className="btn btn-primary btn-full" disabled={loading} style={{ marginTop: 8 }}>
-              {loading ? <><span className="btn-spinner" /> Creating account...</> : 'Create Account →'}
+              {loading ? <><span className="btn-spinner" /> Creating account…</> : 'Create account →'}
             </button>
           </form>
 
           <p className="auth-switch">
             Already have an account?{' '}
-            <Link to="/login" className="auth-link">Login</Link>
+            <Link to="/login" className="auth-link">Sign in</Link>
           </p>
         </div>
       </div>

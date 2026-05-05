@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
-    "axios": "^1.7.7",
     "recharts": "^2.13.3"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.3",
-    "vite": "^5.4.11"
+    "vite": "^5.4.21"
   },
   "scripts": {
     "start": "vite",
@@ -19,7 +19,15 @@
     "preview": "vite preview"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
