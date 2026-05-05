@@ -173,6 +173,8 @@ Start: npm start
 Env vars: PORT, MONGODB_URI, JWT_SECRET, FRONTEND_URL
 ```
 
+On Render / Railway set **`FRONTEND_URL`** to exactly the site users open (for example `https://adaptive-fit-six.vercel.app`). If you mistakenly set it to your API hostname (`*.onrender.com`), the browser’s real `Origin` will not match and CORS will block registration and login.
+
 ### Frontend — Vercel / Netlify
 ```bash
 Build command: npm run build

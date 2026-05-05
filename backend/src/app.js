@@ -9,16 +9,22 @@ const app = express();
 // Connect database
 connectDB();
 
-const parseOriginList = (value) =>
+const normalizeOrigin = (origin) =>
+  typeof origin !== 'string' ? '' : origin.trim().replace(/\/+$/, '');
+
+const parseOriginListRaw = (value) =>
   (value || '')
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
 
+const parseOriginList = (value) =>
+  parseOriginListRaw(value).map(normalizeOrigin).filter(Boolean);
+
 const corsAllowList = new Set(parseOriginList(process.env.ALLOWED_ORIGINS));
 
 if (process.env.FRONTEND_URL) {
-  corsAllowList.add(process.env.FRONTEND_URL.trim());
+  corsAllowList.add(normalizeOrigin(process.env.FRONTEND_URL));
 }
 
 // Local dev: Vite is often :3000 (this repo) or default :5173
@@ -28,13 +34,19 @@ if (process.env.NODE_ENV !== 'production') {
     'http://127.0.0.1:3000',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-  ].forEach((origin) => corsAllowList.add(origin));
+  ].forEach((origin) => corsAllowList.add(normalizeOrigin(origin)));
+}
+
+if (process.env.NODE_ENV === 'production' && corsAllowList.size === 0) {
+  console.warn(
+    '[CORS] No FRONTEND_URL or ALLOWED_ORIGINS configured; browsers will fail preflight.'
+  );
 }
 
 const corsOptions = {
-  origin(origin, callback) {
-    if (!origin) return callback(null, true);
-    if (corsAllowList.has(origin)) return callback(null, true);
+  origin(originHeader, callback) {
+    if (!originHeader) return callback(null, true);
+    if (corsAllowList.has(normalizeOrigin(originHeader))) return callback(null, true);
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
@@ -47,10 +59,11 @@ app.options('*', cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Rate limiting
+// Rate limiting (skip OPTIONS so preflight is never throttled without CORS headers)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200
+  max: 200,
+  skip: (req) => req.method === 'OPTIONS'
 });
 app.use('/api/', limiter);
 
