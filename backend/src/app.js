@@ -10,26 +10,17 @@ const app = express();
 connectDB();
 
 // Allowed origins (local + production)
-const allowedOrigins = [
-  "http://localhost:3000",
-  process.env.FRONTEND_URL
-].filter(Boolean);
+const cors = require("cors");
 
-// CORS configuration
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow Postman/curl
+app.use(cors({
+  origin: "https://adaptive-fit-six.vercel.app",
+  credentials: true
+}));
 
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-};
+app.options("*", cors({
+  origin: "https://adaptive-fit-six.vercel.app",
+  credentials: true
+}));
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
