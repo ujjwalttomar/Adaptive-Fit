@@ -179,5 +179,8 @@ On Render / Railway set **`FRONTEND_URL`** to exactly the site users open (for e
 ```bash
 Build command: npm run build
 Output dir: dist
-Env: VITE_API_URL=https://your-backend.onrender.com/api
 ```
+
+Set **`VITE_API_URL`** to your full backend base including `/api`, e.g. `https://your-backend.onrender.com/api`, **or omit it** — this repo’s `vercel.json` proxies same-origin **`/api/*`** to Render so the browser talks to `https://<your-vercel-domain>/api/...`.
+
+If you fork the repo, update **`frontend/vercel.json`** `"destination"` to match your deployed API hostname.

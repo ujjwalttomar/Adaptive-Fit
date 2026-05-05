@@ -1,6 +1,48 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+/**
+ * Axios joins baseURL + path: base must include `/api`, else POST `/auth/register`
+ * wrongly targets `origin/auth/register` (405 from the static host).
+ */
+function resolveApiBaseUrl() {
+  const raw = (import.meta.env.VITE_API_URL ?? '').trim();
+  const withApiSuffix = (base) => {
+    const b = base.replace(/\/+$/, '');
+    return b.endsWith('/api') ? b : `${b}/api`;
+  };
+
+  const localDefault = 'http://localhost:4000/api';
+  const inBrowser =
+    typeof globalThis.location !== 'undefined' && !!globalThis.location.origin;
+
+  if (!raw) {
+    if (inBrowser) return `${globalThis.location.origin}/api`;
+    return localDefault;
+  }
+
+  if (!raw.startsWith('http')) return inBrowser ? `${globalThis.location.origin}/api` : localDefault;
+
+  let normalized;
+  try {
+    normalized = withApiSuffix(raw);
+  } catch {
+    return inBrowser ? `${globalThis.location.origin}/api` : localDefault;
+  }
+
+  if (inBrowser) {
+    try {
+      if (new URL(normalized).origin === globalThis.location.origin) {
+        return `${globalThis.location.origin}/api`;
+      }
+    } catch {
+      /* Fall through */
+    }
+  }
+
+  return normalized;
+}
+
+const API_URL = resolveApiBaseUrl();
 
 const api = axios.create({ baseURL: API_URL });
 
