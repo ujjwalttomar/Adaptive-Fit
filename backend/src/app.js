@@ -9,19 +9,39 @@ const app = express();
 // Connect database
 connectDB();
 
+const parseOriginList = (value) =>
+  (value || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
 
-app.use(cors({
-  origin: "https://adaptive-fit-six.vercel.app",
-  credentials: true
-}));
+const corsAllowList = new Set(parseOriginList(process.env.ALLOWED_ORIGINS));
 
-app.options("*", cors({
-  origin: "https://adaptive-fit-six.vercel.app",
-  credentials: true
-}));
+if (process.env.FRONTEND_URL) {
+  corsAllowList.add(process.env.FRONTEND_URL.trim());
+}
+
+// Local dev: Vite is often :3000 (this repo) or default :5173
+if (process.env.NODE_ENV !== 'production') {
+  [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+  ].forEach((origin) => corsAllowList.add(origin));
+}
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin) return callback(null, true);
+    if (corsAllowList.has(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+};
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Body parsing
 app.use(express.json());
